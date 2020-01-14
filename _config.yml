@@ -1,0 +1,37 @@
+title: prhero
+description: >-
+  A better way to review PR's
+long_description: >-
+  PRHero is an open source alternative UI for reviewing pull requests. Stop
+  scrolling endlessly to review important code.
+twitter:
+  username: colinjfw
+  card: summary
+logo: /assets/logo.png
+image: /assets/logo.png
+author:
+  twitter: colinjfw
+social:
+  name: colinjfw
+  links:
+    - https://twitter.com/colinjfw
+
+support_email: hi@prhero.dev
+
+twitter_url: https://twitter.com/colinjfw
+start_url: /pr/
+terms_url: /terms/terms
+privacy_url: /terms/privacy
+security_url: /terms/security
+
+markdown: kramdown
+
+plugins:
+  - jekyll-seo-tag
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - _proxy

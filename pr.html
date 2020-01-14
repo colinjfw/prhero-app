@@ -1,0 +1,89 @@
+---
+---
+
+<!doctype html>
+<html lang="en" style="height: 100%; width: 100%;">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/assets/logo.png">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+</head>
+
+<body style="height: 100%; width: 100%;">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <script>
+    function isAuthenticated() {
+      var token = localStorage.getItem("prhero-token");
+      if (!token) {
+        return Promise.resolve(null);
+      }
+      var url = "https://prhero-proxy.colinjfw.workers.dev/api/user";
+      return fetch(url, {
+        headers: {
+          authorization: "token " + token,
+        },
+      })
+        .then(function (res) {
+          if (res.status === 200) {
+            return token;
+          }
+          return null;
+        })
+        .catch(function (err) {
+          return null;
+        });
+    }
+
+    function saveParams() {
+      var params = new URLSearchParams(window.location.search);
+      sessionStorage.setItem("owner", params.get("owner") || "");
+      sessionStorage.setItem("repo", params.get("repo") || "");
+      sessionStorage.setItem("pr", params.get("pr") || "");
+    }
+
+    function getToken() {
+      var params = new URLSearchParams(window.location.search);
+      var token = params.get("token");
+
+      if (token) {
+        localStorage.setItem("prhero-token", token);
+        window.location.href = "/pr/?" +
+          "&owner=" + (sessionStorage.getItem("owner") || "") +
+          "&repo=" + (sessionStorage.getItem("repo") || "")+
+          "&pr=" + (sessionStorage.getItem("pr") || "");
+      }
+    }
+
+    function startApp(token) {
+      var apiUrl = "https://prhero-proxy.colinjfw.workers.dev/api";
+      var appUrl = "https://colinjfw.github.io/prhero/";
+      var params = new URLSearchParams(window.location.search);
+
+      var iframe = document.createElement("iframe");
+      iframe.frameBorder = "0";
+      iframe.width = "100%";
+      iframe.height = "100%";
+      iframe.src = appUrl +
+        "?token=" + encodeURIComponent(token) +
+        "&url=" + encodeURIComponent(apiUrl) +
+        "&owner=" + (params.get("owner") || "") +
+        "&repo=" + (params.get("repo") || "")+
+        "&pr=" + (params.get("pr") || "");
+      document.body.append(iframe);
+    }
+
+    (function () {
+      var loginUrl = "https://prhero-proxy.colinjfw.workers.dev/login?return=dev";
+      getToken();
+      isAuthenticated().then(function (token) {
+        if (!token) {
+          saveParams();
+          window.location.href = loginUrl;
+        }
+        startApp(token);
+      });
+    })();
+  </script>
+</body>
+</html>

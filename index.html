@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<header class="bg-gray-dark pb-10 box-shadow">
+  <div class="content-lg text-center">
+    <h1 class="f1-light h00-mktg text-white">
+      {{ page.description | default: site.description }}
+    </h1>
+
+    <p class="lead text-gray-light">
+      {{ page.long_description | default: site.long_description }}
+    </p>
+  </div>
+</header>
+
+<main class="marketing pb-10">
+  <div class="Box border mb-3 box-shadow-large" style="height: 400px; width: 900px; margin: auto; overflow-y: hidden; margin-top: -100px;">
+    <img src="/assets/screen.png" width="100%">
+  </div>
+
+  <div class="text-center mt-5">
+    <a target="_blank" href="{{site.start_url}}" role="button" class="btn btn-primary btn-large">
+      Get started for free
+    </a>
+  </div>
+  <div class="text-center mt-2">
+    <a href="mailto:{{site.support_email}}">
+      Ask us a question
+    </a>
+  </div>
+</main>

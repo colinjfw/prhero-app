@@ -1,0 +1,59 @@
+main:
+- image: /assets/images/deploy-list.png
+  title: Click to deploy
+  left: true
+  description: |
+   Click the latest commit in the Deliverybot dashboard to deploy your
+   code. It doesn't get any simpler than that.
+- image: /assets/images/deploy-show.png
+  title: Automatic deployments
+  description: |
+    Deploy automatically to multiple clusters and environments given a
+    specific branch. Waits for required status checks, manual approval and more
+    to allow for complex pipeline workflows.
+- image: /assets/images/pr-deploy.png
+  title: Advanced deployment workflows
+  left: true
+  description: |
+    Orchestrate canary deployments to test code in incremental steps or
+    push out environments per pull request. Deliverybot is great at managing
+    complex workflows.
+- image: /assets/images/deploy-slack.png
+  title: ChatOps
+  description: |
+    Trigger deployments using Slack. Don't leave your teams workflow tool
+    to manage your deploys.
+- image: /assets/images/deploy-analytics.png
+  title: Analytics
+  left: true
+  description: |
+    Track your teams DevOps performance with key analytics. Metrics like lead
+    time and deployment frequency are recommended by the state of DevOps report.
+kubernetes:
+- image: /assets/images/integrations/flux.svg
+  title: GitOps integration
+  description: |
+    GitOps integration provides a production ready enterprise grade way of
+    shipping your code.
+- image: /assets/images/helm-action.png
+  title: Helm integration
+  description: |
+    Helm action integration provides a simpler way of deploying to Kubernetes
+    using GitHub actions and connecting to your Kubernetes cluster directly.
+slack:
+- image: /assets/images/deploy-slack.png
+  title: Deploy using Slack
+  description: |
+    Trigger deployments using Slack. Don't leave your teams workflow tool
+    to manage your deploys.
+auto:
+- image: /assets/images/deploy-show.png
+  title: Automatic deployments
+  description: |
+    Deploy automatically to multiple clusters and environments given a
+    specific branch.
+- image: /assets/images/deploy-list.png
+  title: Click to deploy
+  description: |
+   Click the latest commit in the Deliverybot dashboard to deploy your
+   code. It doesn't get any simpler than that.

@@ -1,0 +1,48 @@
+.navbar {
+  width: 100%;
+  padding: 5px 16px;
+  height: 64px;
+  color: hsla(0,0%,100%,.7);
+  display: flex;
+  align-items: center;
+}
+.hidden { display: none; }
+
+.content {
+  max-width: 800px; width: 100%; margin: auto; padding: 24px;
+}
+.content-lg {
+  max-width: 1024px; width: 100%; margin: auto; padding: 24px;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+.text-blue { color: rgb(33, 136, 255); }
+.text-blue-light { color: rgb(200, 225, 255); }
+
+.mt-8 { margin-top: 8em; }
+
+
+.docs-menu {
+  width: 220px; position: absolute; top: 0; left: -230px;
+}
+
+@media screen and (max-width: 1300px) {
+  .docs-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+.main-body { min-height: 60vh; }
+
+.h000-mktg { font-weight: 200 !important; }
+.h1-mktg { font-weight: 300 !important; }
+
+.marketing p {
+  font-size: 1.2em;
+  font-weight: 300;
+}
