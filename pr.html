@@ -48,7 +48,7 @@
 
       if (token) {
         localStorage.setItem("prhero-token", token);
-        window.location.href = "/pr/?" +
+        window.location.href = "/pr?" +
           "&owner=" + (sessionStorage.getItem("owner") || "") +
           "&repo=" + (sessionStorage.getItem("repo") || "")+
           "&pr=" + (sessionStorage.getItem("pr") || "");
@@ -74,7 +74,7 @@
     }
 
     (function () {
-      var loginUrl = "https://prhero-proxy.colinjfw.workers.dev/login?return=dev";
+      var loginUrl = "https://prhero-proxy.colinjfw.workers.dev/login?return=prod";
       getToken();
       isAuthenticated().then(function (token) {
         if (!token) {
