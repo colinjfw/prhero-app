@@ -14,6 +14,10 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <script>
     function isAuthenticated() {
+      if (getToken()) {
+        return;
+      }
+
       var token = localStorage.getItem("prhero-token");
       if (!token) {
         return Promise.resolve(null);
@@ -52,7 +56,9 @@
           "&owner=" + (sessionStorage.getItem("owner") || "") +
           "&repo=" + (sessionStorage.getItem("repo") || "")+
           "&pr=" + (sessionStorage.getItem("pr") || "");
+        return true;
       }
+      return false;
     }
 
     function startApp(token) {
@@ -75,11 +81,11 @@
 
     (function () {
       var loginUrl = "https://prhero-proxy.colinjfw.workers.dev/login?return=prod";
-      getToken();
       isAuthenticated().then(function (token) {
         if (!token) {
           saveParams();
           window.location.href = loginUrl;
+          return;
         }
         startApp(token);
       });
