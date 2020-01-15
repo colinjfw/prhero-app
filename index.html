@@ -20,13 +20,37 @@ layout: default
   </div>
 
   <div class="text-center mt-5">
+    <ul class="list-style-none f5 flex-auto">
+      {% for highlight in site.highlights %}
+      <li class="mb-1 pl-4 f4">
+        <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" width="14" height="10.4">
+          <path d="M1 4.6L5.2 9 13 1" fill="none" stroke="#34D058" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        {{ highlight }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="text-center mt-5">
     <a target="_blank" href="{{site.start_url}}" role="button" class="btn btn-primary btn-large">
-      Get started for free
+      Install the free extension
     </a>
   </div>
   <div class="text-center mt-2">
-    <a href="mailto:{{site.support_email}}">
-      Ask us a question
-    </a>
+    <a target="_blank" href="{{site.example_url}}">Review an example</a> |
+    <a href="{{site.github_url}}">View the GitHub repository</a >
+  </div>
+
+  <div class="container mt-10">
+    <div class="Subhead">
+      <div class="Subhead-heading">Frequent questions</div>
+    </div>
+    {% for q in site.questions %}
+    <div class="mt-4">
+      <h4 class="h4-mktg">{{q.q}}</h4>
+      <p>{{q.a}}</p>
+    </div>
+    {% endfor %}
   </div>
 </main>

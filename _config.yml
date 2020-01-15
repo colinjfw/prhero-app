@@ -1,9 +1,9 @@
 title: prhero
 description: >-
-  A better way to review PR's
+  A better way to review pull requests
 long_description: >-
-  PRHero is an open source alternative UI for reviewing pull requests. Stop
-  scrolling endlessly to review important code.
+  PRHero is an open source alternative UI for reviewing pull requests. Use a
+  faster and more advanced UI to quickly comment, review and approve code.
 twitter:
   username: colinjfw
   card: summary
@@ -16,10 +16,35 @@ social:
   links:
     - https://twitter.com/colinjfw
 
+highlights:
+  - Comment on rich pull request diffs.
+  - Advanced syntax highlighting from VSCode.
+  - Browser extension allows you to jump right from GitHub.
+
+questions:
+  - q: Why a browser extension?
+    a: >-
+      The browser extension simply adds a link to GitHub to allow you to review
+      any pull request that you are looking at immediately. We recommend
+      installing this first so you don't have to change your workflow.
+
+  - q: Is it free?
+    a: >-
+      It's free and always will be for open source projects on GitHub. Private
+      repositories eventually will require a subscription.
+
+  - q: How does it work?
+    a: >-
+      The GitHub API offers the flexibility to be able to query easily for diffs
+      and features that we need. PRHero queries the API directly from the
+      browser using url parameters. Try visiting your pull requests using the
+      URL https://prhero.dev/pr?owner=OWNER&repo=REPO&pr=NUMBER.
+
 support_email: hi@prhero.dev
 
+github_url: https://github.com/colinfjw/prhero
 twitter_url: https://twitter.com/colinjfw
-start_url: /pr
+example_url: /pr?owner=helm&repo=helm&pr=7323
 terms_url: /terms/terms
 privacy_url: /terms/privacy
 security_url: /terms/security
