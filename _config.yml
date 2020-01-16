@@ -46,9 +46,13 @@ github_url: https://github.com/prhero/prhero
 twitter_url: https://twitter.com/colinjfw
 example_url: /pr?owner=helm&repo=helm&pr=7323
 start_url: https://github.com/prhero/extension
+
 terms_url: /terms/terms
 privacy_url: /terms/privacy
-security_url: /terms/security
+privacy_email: privacy@prhero.dev
+support_email: support@prhero.dev
+corp_name: PRHero
+service_name: PRHero
 
 markdown: kramdown
 
