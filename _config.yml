@@ -42,9 +42,10 @@ questions:
 
 support_email: hi@prhero.dev
 
-github_url: https://github.com/colinfjw/prhero
+github_url: https://github.com/prhero/prhero
 twitter_url: https://twitter.com/colinjfw
 example_url: /pr?owner=helm&repo=helm&pr=7323
+start_url: https://github.com/prhero/extension
 terms_url: /terms/terms
 privacy_url: /terms/privacy
 security_url: /terms/security
