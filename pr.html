@@ -16,7 +16,7 @@
     var proxyUrl = "https://prhero-proxy.colinjfw.workers.dev";
     var appUrl = "https://prhero.github.io/prhero/";
     var apiUrl = proxyUrl + "/api";
-    var loginUrl = proxyUrl + "/login?return=dev";
+    var loginUrl = proxyUrl + "/login?return={{jekyll.environment}}";
 
     function isAuthenticated() {
       if (getToken()) {

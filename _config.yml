@@ -59,4 +59,5 @@ exclude:
   - Gemfile.lock
   - node_modules
   - vendor
-  - _proxy
+  - proxy
+  - CNAME
