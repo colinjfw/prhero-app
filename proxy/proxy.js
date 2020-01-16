@@ -5,6 +5,10 @@ addEventListener("fetch", event => {
   event.respondWith(handleRequest(event.request));
 });
 
+class AuthError extends Error {
+  status = "AuthFailed";
+}
+
 /**
  * Fetches an access token from GitHub.
  *
@@ -62,7 +66,7 @@ async function handleRequest(req) {
       case "/callback":
         return await handleCode(req);
       case "/login":
-        return handleLogin(req);
+        return await handleLogin(req);
     }
 
     if (path.startsWith("/api")) {
@@ -72,15 +76,18 @@ async function handleRequest(req) {
       return wrapWithOptions(await handleApi(req));
     }
 
-    return new Response("NotFound", {
+    return new Response('{"code": "NotFound"}', {
       status: 404,
-      headers: { "content-type": "text/plain" }
+      headers: { "content-type": "application/json" }
     });
   } catch (error) {
-    return new Response(error.stack, {
-      status: 500,
-      headers: { "content-type": "text/plain" }
-    });
+    return new Response(
+      JSON.stringify({"code": "ServerError", "stack": error.stack}),
+      {
+        status: 500,
+        headers: { "content-type": "text/plain" }
+      },
+    );
   }
 }
 
@@ -88,7 +95,7 @@ async function handleRequest(req) {
  * Handle access code from GitHub.
  *
  * @param {Request} req
- * @returns {Response}
+ * @returns {Promise<Response>}
  */
 async function handleLogin(req) {
   const q = query(req);
@@ -118,16 +125,33 @@ function substituteUrl(url) {
  * @returns {Promise<Response>}
  */
 async function handleApi(req) {
-  const auth = req.headers.get("authorization");
-  const token = await session.read(auth.split(" ").pop());
-  const next = new Request(substituteUrl(req.url), {
-    headers: {
-      "accept": req.headers.get("accept"),
-      "authorization": `token ${token}`,
-      "user-agent": req.headers.get("user-agent"),
+  try {
+    const auth = req.headers.get("authorization");
+    if (!auth) {
+      throw new AuthError("Invalid credentials");
     }
-  });
-  return await fetch(next);
+
+    const token = await session.read(auth.split(" ").pop());
+    const next = new Request(substituteUrl(req.url), {
+      headers: {
+        "accept": req.headers.get("accept"),
+        "authorization": `token ${token}`,
+        "user-agent": req.headers.get("user-agent"),
+      }
+    });
+    return await fetch(next);
+  } catch (err) {
+    switch (err.status) {
+      case "AuthFailed", "SigningFailed":
+        return new Response('{"code": "Unauthorized"}', {
+          status: 401,
+          headers: { "content-type": "application/json" }
+        })
+      default:
+        throw err
+    }
+  }
+
 }
 
 /**
